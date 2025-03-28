@@ -26,6 +26,7 @@ jobs:
         uses: super-linter/super-linter@v7.3.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          VALIDATE_CHECKOV: false   # Disable Checkov
-          VALIDATE_GITHUB_ACTIONS: false  # Disable GitHub Actions checks
-          VALIDATE_YAML: false      # Disable YAML Prettier temporarily
+          VALIDATE_CHECKOV: false          # Disable Checkov
+          VALIDATE_GITHUB_ACTIONS: false   # Disable GitHub Actions checks
+          VALIDATE_YAML: true              # Enable YAML validation
+          VALIDATE_YAML_PRETTIER: false    # Explicitly disable YAML Prettier
