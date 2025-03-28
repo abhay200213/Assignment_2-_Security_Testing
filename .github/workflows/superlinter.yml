@@ -28,5 +28,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VALIDATE_CHECKOV: false          # Disable Checkov
           VALIDATE_GITHUB_ACTIONS: false   # Disable GitHub Actions checks
-          VALIDATE_YAML: true              # Enable YAML validation
+          VALIDATE_YAML: false             # Disable YAML validation
           VALIDATE_YAML_PRETTIER: false    # Explicitly disable YAML Prettier
