@@ -2,31 +2,34 @@
 name: Lint
 
 on: # yamllint disable-line rule:truthy
-  push: null
-  pull_request: null
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
-permissions: {}
+permissions:
+  contents: read
+  packages: read
+  statuses: write
 
 jobs:
   build:
     name: Lint
     runs-on: ubuntu-latest
 
-    permissions:
-      contents: read
-      packages: read
-      statuses: write
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 0 # Ensures full history for file change detection
 
       - name: Super-linter
         uses: super-linter/super-linter@v7.3.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          VALIDATE_CHECKOV: false          # Disable Checkov
-          VALIDATE_GITHUB_ACTIONS: false   # Disable GitHub Actions checks
-          VALIDATE_YAML: false             # Disable YAML Prettier temporarily
+          VALIDATE_ALL_CODEBASE: false       # Only validate changed files
+          VALIDATE_CHECKOV: false           # Disable Checkov temporarily
+          VALIDATE_GITHUB_ACTIONS: false    # Disable GitHub Actions checks
+          VALIDATE_YAML: false              # Disable YAML Prettier temporarily
